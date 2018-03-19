@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\Invaders3D.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{A147585D-E6C9-4A73-A892-A28FE1ABE742}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Invaders3D.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\Invaders3DEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{D7E24EE8-27D5-4FC5-928B-4308C8423733}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultGame.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\Invaders3D">
+			<UniqueIdentifier>{BE6E2F8D-3AA2-4430-B20A-41C9005ED45B}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\Invaders3D\Invaders3D.Build.cs">
+			<Filter>Source\Invaders3D</Filter>
+		</None >
+		<ClCompile Include="..\..\Source\Invaders3D\Invaders3D.cpp">
+			<Filter>Source\Invaders3D</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Invaders3D\Invaders3D.h">
+			<Filter>Source\Invaders3D</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Invaders3D\Invaders3DCharacter.cpp">
+			<Filter>Source\Invaders3D</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Invaders3D\Invaders3DCharacter.h">
+			<Filter>Source\Invaders3D</Filter>
+		</ClInclude >
+		<ClCompile Include="..\..\Source\Invaders3D\Invaders3DGameMode.cpp">
+			<Filter>Source\Invaders3D</Filter>
+		</ClCompile >
+		<ClInclude Include="..\..\Source\Invaders3D\Invaders3DGameMode.h">
+			<Filter>Source\Invaders3D</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>
