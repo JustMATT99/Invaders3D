@@ -19,8 +19,8 @@ void EmptyLinkFunctionForGeneratedCodeInvaders3D_init() {}
 			static const UE4CodeGen_Private::FPackageParams PackageParams = {
 				"/Script/Invaders3D",
 				PKG_CompiledIn | 0x00000000,
-				0x67B24CED,
-				0x7488F52D,
+				0xA166B39A,
+				0xF863D1F9,
 				nullptr, 0,
 				METADATA_PARAMS(nullptr, 0)
 			};

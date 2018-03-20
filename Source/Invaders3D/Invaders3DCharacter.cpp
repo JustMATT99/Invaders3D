@@ -15,6 +15,7 @@
 AInvaders3DCharacter::AInvaders3DCharacter()
 {
 	// Set size for collision capsule
+	
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
 	// set our turn rates for input
@@ -28,7 +29,7 @@ AInvaders3DCharacter::AInvaders3DCharacter()
 
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f); // ...at this rotation rate
 	GetCharacterMovement()->JumpZVelocity = 600.f;
 	GetCharacterMovement()->AirControl = 0.2f;
 
@@ -54,29 +55,35 @@ void AInvaders3DCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 {
 	// Set up gameplay key bindings
 	check(PlayerInputComponent);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
-	PlayerInputComponent->BindAxis("MoveForward", this, &AInvaders3DCharacter::MoveForward);
+	// stop forward movement and jumping
+	//PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+	//PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
+
+	//PlayerInputComponent->BindAxis("MoveForward", this, &AInvaders3DCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AInvaders3DCharacter::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
 	// "turnrate" is for devices that we choose to treat as a rate of change, such as an analog joystick
+	/* disable this, makes the game more difficult, will make camera better to compensate
 	PlayerInputComponent->BindAxis("Turn", this, &APawn::AddControllerYawInput);
 	PlayerInputComponent->BindAxis("TurnRate", this, &AInvaders3DCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AInvaders3DCharacter::LookUpAtRate);
-
+	*/
+	/*
 	// handle touch devices
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AInvaders3DCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AInvaders3DCharacter::TouchStopped);
 
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AInvaders3DCharacter::OnResetVR);
+	*/
 }
 
 
+/* un needed
 void AInvaders3DCharacter::OnResetVR()
 {
 	UHeadMountedDisplayFunctionLibrary::ResetOrientationAndPosition();
@@ -116,7 +123,7 @@ void AInvaders3DCharacter::MoveForward(float Value)
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
 	}
-}
+}*/
 
 void AInvaders3DCharacter::MoveRight(float Value)
 {
@@ -131,4 +138,9 @@ void AInvaders3DCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+void AInvaders3DCharacter::Fire() 
+{
+	
 }
