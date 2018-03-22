@@ -13,8 +13,28 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define INVADERS3D_Invaders3DCharacter_generated_h
 
-#define Invaders3D_Source_Invaders3D_Invaders3DCharacter_h_12_RPC_WRAPPERS
-#define Invaders3D_Source_Invaders3D_Invaders3DCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS
+#define Invaders3D_Source_Invaders3D_Invaders3DCharacter_h_12_RPC_WRAPPERS \
+ \
+	DECLARE_FUNCTION(execOnFire) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnFire(); \
+		P_NATIVE_END; \
+	}
+
+
+#define Invaders3D_Source_Invaders3D_Invaders3DCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+ \
+	DECLARE_FUNCTION(execOnFire) \
+	{ \
+		P_FINISH; \
+		P_NATIVE_BEGIN; \
+		P_THIS->OnFire(); \
+		P_NATIVE_END; \
+	}
+
+
 #define Invaders3D_Source_Invaders3D_Invaders3DCharacter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAInvaders3DCharacter(); \

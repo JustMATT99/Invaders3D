@@ -11,10 +11,23 @@ class INVADERS3D_API APlayerProjectile : public AActor
 {
 	GENERATED_BODY()
 
+	// Collision Stuff
 	UPROPERTY(VisibleDefaultsOnly, Category = Projectile)
 	class USphereComponent* CollisionComp;
 
+	// Movement stuff
+	UPROPERTY(VisibleAnywhere, Category = Movement)
+	class UProjectileMovementComponent* ProjectileMovement;
+
+	// Mesh, so you can see it
+	UPROPERTY(VisibleAnywhere, Category = Visual)
+	class UStaticMeshComponent* ProjectileMesh;
+
+	// Constructor
 	APlayerProjectile(const FObjectInitializer& ObjInit);
+
+public:
+	void InitVel(const FVector& FireDir);
 	
 public:	
 	// Sets default values for this actor's properties

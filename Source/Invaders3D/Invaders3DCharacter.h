@@ -19,6 +19,15 @@ class AInvaders3DCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* FollowCamera;
 public:
+	/** Muzzle Offset */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	FVector MuzOffset;
+public:
+	/** Spawned Class */
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Projectile)
+	TSubclassOf<class APlayerProjectile> ProjectileClass;
+
+public:
 	AInvaders3DCharacter();
 
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
@@ -28,7 +37,7 @@ public:
 	/** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
 	float BaseLookUpRate;
-
+	
 protected:
 
 	/** Resets HMD orientation in VR. */
@@ -41,7 +50,8 @@ protected:
 	void MoveRight(float Value);
 
 	/** Called to let player fire weapon */
-	void Fire();
+	UFUNCTION()
+	void OnFire();
 
 	/** 
 	 * Called via input to turn at a given rate. 

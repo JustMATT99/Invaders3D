@@ -2,6 +2,9 @@
 
 #include "PlayerProjectile.h"
 #include "Components/SphereComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "Components/StaticMeshComponent.h"
+
 
 
 APlayerProjectile::APlayerProjectile(const FObjectInitializer& ObjInit)
@@ -10,6 +13,15 @@ APlayerProjectile::APlayerProjectile(const FObjectInitializer& ObjInit)
 	CollisionComp = ObjInit.CreateDefaultSubobject<USphereComponent>(this, TEXT("SphereComp"));
 	CollisionComp->InitSphereRadius(15.0f);
 	RootComponent = CollisionComp;
+
+	ProjectileMovement = ObjInit.CreateDefaultSubobject<UProjectileMovementComponent>(this, TEXT("ProjectileComp"));
+	ProjectileMovement->UpdatedComponent = CollisionComp;
+	ProjectileMovement->InitialSpeed = 3000.0f;
+	ProjectileMovement->MaxSpeed = 3000.0f;
+	ProjectileMovement->bShouldBounce = false;
+
+	ProjectileMesh = ObjInit.CreateDefaultSubobject<UStaticMeshComponent>(this, TEXT("ProjectileMesh"));
+
 }
 
 // Sets default values
@@ -32,5 +44,14 @@ void APlayerProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+}
+
+void APlayerProjectile::InitVel(const FVector& FireDir) 
+{
+	if (ProjectileMovement) 
+	{
+		// Set initial direction, dont wanna shoot yourself, do you?
+		ProjectileMovement->Velocity = FireDir * ProjectileMovement->InitialSpeed;
+	}
 }
 

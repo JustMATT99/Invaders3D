@@ -6,6 +6,8 @@
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "PlayerProjectile.h"
+#include "Engine/World.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -62,6 +64,8 @@ void AInvaders3DCharacter::SetupPlayerInputComponent(class UInputComponent* Play
 
 	//PlayerInputComponent->BindAxis("MoveForward", this, &AInvaders3DCharacter::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AInvaders3DCharacter::MoveRight);
+
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AInvaders3DCharacter::OnFire);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
@@ -140,7 +144,28 @@ void AInvaders3DCharacter::MoveRight(float Value)
 	}
 }
 
-void AInvaders3DCharacter::Fire() 
+void AInvaders3DCharacter::OnFire() 
 {
-	
+	if (ProjectileClass != NULL) 
+	{
+		FVector MuzzleLocation = this->GetActorTransform().GetLocation() + MuzOffset;
+		FRotator MuzzleRotation = this->GetActorTransform().GetRotation().Rotator();
+		FTransform MuzzleTransform = this->GetActorTransform();
+
+
+		UWorld* const World = GetWorld();
+		if (World) 
+		{
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+			APlayerProjectile* const Projectile = World->SpawnActor<APlayerProjectile>(ProjectileClass, MuzzleTransform, SpawnParams);
+			if (Projectile) 
+			{
+				FVector const FireDir = MuzzleRotation.Vector();
+				Projectile->InitVel(FireDir);
+			}
+		}
+
+	}
 }
